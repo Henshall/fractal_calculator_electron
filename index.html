@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+
+    <div class="form_text">
+    <div>
+      <h1>Fractal Calculator:</h1>
+    </div>
+    <br>
+
+    <div class="my_table_center">
+    <table id="myTable" class="order-list">
+            <tr>
+                <td id = 'first_box' class = ''></td>
+                <td class = 'name'> Unit Length (km) </td>
+                <td class = 'name'># of times Unit Length Fits Into Object</td>
+            </tr>
+            <tr>
+                <td class = 'name measurement'>Measurement 1   </td>
+                <td>  <input id = "a0" class = 'text_box' type="text" name="name" value ="160" /></td>
+                <td>  <input id = "b0" class = 'text_box' type="text" name="price" value ="20" />  </td>
+                <td class = 'name'>Fractal Dimension</td>
+                <td><a class="deleteRow"></a></td>
+            </tr>
+            <tr>
+              <td class = 'name measurement'>Measurement 2   </td>
+              <td>  <input id = "a1" class = 'text_box' type="text" name="name" value ="80"  />  </td>
+              <td>  <input id = "b1" class = 'text_box' type="text" name="price" value ="47"  />    </td>
+              <td>  <input id = "fdbox0" disabled="disabled" class = 'text_box calc_text' type="text"  />    </td>
+            </tr>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align: left;">
+                    <input type="button" id="addrow" class = "brown_background" value="Add Row" />
+                </td>
+            </tr>
+
+        </tfoot>
+    </table>
+    <br>
+    <br>
+    </div>
+    <div class="my_table_center">
+      <table class="centered">
+        <tr>
+          <td class = 'name2'> Ant Scale</td>
+          <td class = 'name2'> Dog Scale</td>
+          <td class = 'name2'> Human Scale</td>
+          <td class = 'name2'> Custom Scale</td>
+          <td class = 'name2'>Calc Custom Scale</td>
+          <td class = 'name2'>Total Length</td>
+        </tr>
+        <tr>
+          <td>  <button id = 'calculate_perimeter_ant' class = "button2 " type="button"  >Calculate</button>  </td>
+          <td>  <button id = 'calculate_perimeter_dog' class = "button2 " type="button"  >Calculate</button>  </td>
+          <td>  <button id = 'calculate_perimeter_human' class = "button2 " type="button"  >Calculate</button>  </td>        <td>  <input id = "scale" class = 'scale_box' type="text" name="price" value = 80 /></td>
+          <td>  <button id = 'calculate_perimeter' class = "button2" type="button"  >Calculate</button>  </td>
+          <td>  <input id = "perimeter" class = 'text_box2' type="text" name="price"  />    </td>
+        </tr>
+      </table>
+
+    </div>
+
+
+
+
+    <br>
+    <br>
+
+    <h3>Guide:</h3>   <br>
+    <div class="align_left">
+    This calculator can be used to calculate distances for natural objects at any scale. The length of any fractal like natural objects depends upon the scale at which you measure them. Examples include: coastlines, trails, the perimeter of a pond, lake or island. Etc.
+    <br><br>
+
+      Step 1: Measure your trail/pond/coastline using different unit lengths (ex. 1km and 2km lengths)
+      <br><br>
+      Step 2: Record the numbe of times each unit length fits into each trail/pond/coastline.
+      <br><br>
+      Step 3: Input values from step 1 and 2, choose a scale, and press calculate
+
+    <br><br><br>
+    <div class="centered">
+
+
+      Example: The following are values from the coastline of britain obtained from rspatial.org:
+    </div>
+    <br>
+    <br>
+
+    <div class="centered">
+
+
+      <table class ="example">
+        <tr>
+          <td>  Unit Length  </td>
+          <td>    # times fits into object  </td>
+        </tr>
+        <tr>
+          <td> 250  </td>
+          <td> 10   </td>
+        </tr>
+        <tr>
+          <td> 200  </td>
+          <td> 13   </td>
+        </tr>
+        <tr>
+          <td> 150  </td>
+          <td> 18   </td>
+        </tr>
+        <tr>
+          <td> 100  </td>
+          <td> 29   </td>
+        </tr>
+        <tr>
+          <td> 50  </td>
+          <td> 72   </td>
+        </tr>
+        <tr>
+          <td> 25  </td>
+          <td> 169   </td>
+        </tr>
+      </table>
+    </div>
+
+    <br><br>
+
+    <div class="centered">
+      <%= image_tag('britain.png', class: 'britain')  %>
+
+    </div>
+
+
+
+
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script  language="JavaScript" type="text/javascript" src="jquery-1.11.3.min.js"></script>
+      <script  language="JavaScript" type="text/javascript" src="modernizr-2.6.2.min.js"></script>
+    <script  language="JavaScript" type="text/javascript" src="table.js"></script>
+      <script  language="JavaScript" type="text/javascript" src="javascript.js"></script>
+        <script   language="JavaScript" type="text/javascript" src="fractal.js"></script>
+
+
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
