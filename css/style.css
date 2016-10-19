@@ -1,0 +1,368 @@
+
+.iteration_field{
+  height: 30px;
+  width: 100px;
+
+}
+
+
+.centered{
+  margin: auto;
+  width: 80%;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.steps{
+
+  margin: auto;
+  width: 70%;
+}
+
+#tablediv{
+  margin: auto;
+  width: 587px;
+}
+
+
+
+.text_box{
+  border-radius: 1px;
+  font-size: 15px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  font-family: 'Open Sans', sans-serif;
+  border: 0.2px solid #fff;
+  box-shadow: 2px 2px 5px #2f748e;
+  transition-duration: 0.5s;
+    // border-style: dotted;
+   width: 87%;
+}
+
+.name{
+
+   margin: 0px auto;
+   text-align: -webkit-center;
+   width: 55%;
+
+ // border-style: dotted;
+}
+.my_table_center{
+  margin: 0px auto;
+  text-align: -webkit-center;
+  width: 93%;
+  left: -3%;
+  position: relative;
+// border-style: dashed;
+}
+
+.my_table_center2{
+      margin: 0px auto;
+text-align: -webkit-center;
+width: 50%;
+
+}
+
+
+.calc_text {
+  background-color: lightgrey;
+}
+
+.measurement{
+  font-size: 30px;
+  font-size: 1.5vw;
+  width: 23%;
+  text-align: center;
+  left: 4%;
+  position: relative;
+}
+
+#addrow{
+  text-align: right;
+  position: relative;
+  left: 9.5%;
+  width: 9.5vw;
+  font-size: 1.5vw;
+  text-align: center;
+
+
+}
+
+.first_box{
+  width: 25%;
+}
+
+.scale_box{
+  background-color: white;
+ // border-style: dashed;
+ width: 12vw;
+}
+
+.button2{
+  //  border-style: dashed;
+  text-decoration:none;
+    border-radius: 1px;
+    font-size: 1vw;
+    padding: 5px 8px;
+    cursor: pointer;
+    color: black;
+    background-color: rgba(120, 134, 138, 0.64);
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 2px 2px 5px #2f748e;
+    transition-duration: 0.5s;
+}
+
+
+.name2{
+  font-size: 30px;
+  font-size: 1.5vw;
+  width: 14%;
+  text-align: center;
+ // border-style: dotted;
+}
+
+
+.text_box2{
+  border-radius: 1px;
+  font-size: 15px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  font-family: 'Open Sans', sans-serif;
+  border: 0.2px solid #fff;
+  box-shadow: 2px 2px 5px #2f748e;
+  transition-duration: 0.5s;
+    // border-style: dotted;
+   width: 10vw;
+}
+
+.britain{
+      width: 70%;
+}
+
+.example{
+  // border-style: dashed;
+  margin: auto;
+  width: 40%;
+  text-align: center;
+  font-weight: bold;
+}
+
+  .log-in-form, #user-form{
+    margin:auto;
+    margin-top: 8%;
+    margin-bottom: 70px;
+    width: 300px;
+    padding: 50px 30px;
+    background-color:oldlace;
+    opacity: 0.8;
+
+  }
+
+  .log-in, .sign-up{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+}
+
+
+
+
+
+
+
+.button{
+  text-decoration:none;
+    border-radius: 1px;
+    font-size: 15px;
+    padding: 5px 8px;
+    cursor: pointer;
+    color: black;
+    background-color: rgba(160, 70, 15, 0.4);
+    font-family: 'Open Sans', sans-serif;
+    border: 0.2px solid #fff;
+    box-shadow: 2px 2px 5px #2f748e;
+    transition-duration: 0.5s;
+
+}
+
+input {
+  border-radius: 1px;
+  font-size: 15px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: black;
+  background-color: rgba(120, 134, 138, 0.64);
+  box-shadow: 2px 2px 5px #2f748e;
+  transition-duration: 0.5s;
+}
+
+
+
+input:hover {
+  color: black;
+  border: 1px solid #2f748e;
+  box-shadow: 2px 2px 20px #2f748e;
+}
+
+button:hover {
+  color: black;
+  border: 1px solid #2f748e;
+  box-shadow: 2px 2px 20px #2f748e;
+}
+
+
+.align_left{
+  text-align: left;
+}
+
+
+
+*{
+  font-family: 'nexa_boldregular';
+
+}
+
+
+input.submit {
+    display: block;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.5em;
+    font: 1.5em "Bebas Neue";
+    margin: 1em 0;
+    background-color: #2f748e;
+    color: white;
+    border-radius: 10px;
+}
+
+
+button.signinsubmit {
+    display: block;
+    border: none;
+    outline: none;
+    width: 89%;
+    padding: 0.5em;
+    font: 1.5em "Bebas Neue";
+    margin: 1em 0;
+    background-color: #6ab47b;
+    color: white;
+    border-radius: 10px;
+}
+
+button.fbsubmit {
+    display: block;
+    border: none;
+    outline: none;
+    width: 88%;
+    padding: 0.5em;
+    font: 1.5em "Bebas Neue";
+    margin: 1em 0;
+    background-color: #6ab47b;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.centered{
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+
+.brown_background{
+
+  background-color: rgb(59, 43, 7)
+}
+
+
+
+
+.line{
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.float_left{
+  float: left;
+}
+.overflow{
+  overflow: hidden;
+}
+
+.center{
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+
+.form_text{
+  margin:auto;
+
+  margin-bottom: 70px;
+  width: 100%;
+
+
+
+}
+
+
+.brown_background{
+background-color: rgba(120, 134, 138, 0.64);
+
+}
+
+
+
+
+.test::after {
+  content: "";
+  background-image: url("../background.jpg");
+  background-repeat: repeat;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  height: 600%;
+}
+
+
+.text_margin{
+
+  margin: 0 auto;
+width: 69%;
+}
+
+
+.britain{
+  text-align: center;
+  margin: auto;
+  height: 750px;
+  background-image: url(../britain.png);
+  background-repeat: no-repeat;
+}
+
+
+
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('nexa_bold-webfont.woff2') format('woff2'),
+         url('/nexa_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

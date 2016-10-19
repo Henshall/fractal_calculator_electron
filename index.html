@@ -2,16 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <!-- All of the Node.js APIs are available in this renderer process. -->
 
-    <div class="form_text">
-    <div>
-      <h1>Fractal Calculator:</h1>
-    </div>
-    <br>
+
+  <div class="test">
+  </div>
+  <div class="form_text">
+    <br><br>
+  <div class="centered">
+    <h1>Fractal Calculator:</h1>
+  </div>
+  <br>
 
     <div class="my_table_center">
     <table id="myTable" class="order-list">
@@ -45,20 +49,17 @@
     <br>
     <br>
     </div>
-    <div class="my_table_center">
+    <div class="my_table_center2">
       <table class="centered">
         <tr>
-          <td class = 'name2'> Ant Scale</td>
-          <td class = 'name2'> Dog Scale</td>
-          <td class = 'name2'> Human Scale</td>
+
           <td class = 'name2'> Custom Scale</td>
           <td class = 'name2'>Calc Custom Scale</td>
           <td class = 'name2'>Total Length</td>
         </tr>
         <tr>
-          <td>  <button id = 'calculate_perimeter_ant' class = "button2 " type="button"  >Calculate</button>  </td>
-          <td>  <button id = 'calculate_perimeter_dog' class = "button2 " type="button"  >Calculate</button>  </td>
-          <td>  <button id = 'calculate_perimeter_human' class = "button2 " type="button"  >Calculate</button>  </td>        <td>  <input id = "scale" class = 'scale_box' type="text" name="price" value = 80 /></td>
+
+           <td>  <input id = "scale" class = 'scale_box' type="text" name="price" value = 80 /></td>
           <td>  <button id = 'calculate_perimeter' class = "button2" type="button"  >Calculate</button>  </td>
           <td>  <input id = "perimeter" class = 'text_box2' type="text" name="price"  />    </td>
         </tr>
@@ -67,27 +68,29 @@
     </div>
 
 
+<br><br>
+    <div class="text_margin">
 
-
-    <br>
-    <br>
 
     <h3>Guide:</h3>   <br>
-    <div class="align_left">
-    This calculator can be used to calculate distances for natural objects at any scale. The length of any fractal like natural objects depends upon the scale at which you measure them. Examples include: coastlines, trails, the perimeter of a pond, lake or island. Etc.
+    This calculator can be used to calculate the perimeter or length of any natural object. The length of any object depends upon the scale at which you measure it. For example, the perimeter of great britain is 2500km when measured with a 250km ruler, yet when using a 50km ruler, its perimeter is 4225km.
+    <br><br>
+    This calculator calculates the fractal dimension for all entered data, and uses this to calculate a fractal dimension for any entered scale. Because it uses multiple fractal dimensions, you can model any object (fractal and non fractal), and find its perimeter at any scale.
     <br><br>
 
-      Step 1: Measure your trail/pond/coastline using different unit lengths (ex. 1km and 2km lengths)
+      Step 1: Measure your object using different unit lengths (ex. 1km and 2km lengths)
       <br><br>
-      Step 2: Record the numbe of times each unit length fits into each trail/pond/coastline.
+      Step 2: Record the numbe of times each unit length fits into your objects (ex your pond, river, coastline, etc).
       <br><br>
       Step 3: Input values from step 1 and 2, choose a scale, and press calculate
-
+    </div>
     <br><br><br>
     <div class="centered">
 
 
-      Example: The following are values from the coastline of britain obtained from rspatial.org:
+      Example: The following are values from the coastline of britain obtained from rspatial.org. Enter these in the columns above to model great britain.
+
+
     </div>
     <br>
     <br>
@@ -129,12 +132,12 @@
 
     <br><br>
 
+
     <div class="centered">
-      <%= image_tag('britain.png', class: 'britain')  %>
+      <div class="britain">
 
+      </div>
     </div>
-
-
 
 
     </div>
