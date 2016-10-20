@@ -1,38 +1,18 @@
-# electron-quick-start
+# Fractal Calculator Guide:
 
-**Clone and run for a quick way to see an Electron in action.**
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
+    Many other fractal calculators only measure and predict values for fractal objects such as coastlines or mountain ranges. This calculator uses fractal geometry to model both fractal and non fractal objects.
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+    All real world objects are not perfect fractals and their fractal dimension depends upon the scale at which you measure them. for example, you may see a coastline, a mountain range, or the leaves on a fern to be fractal objects, but their iterations do not continue infinitely, and thus their fractal dimension changes based upon their scale.
 
-A basic Electron application needs just these files:
+    This calculator allows you to model an object with various fractal dimensions, and capture its true nature.
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start).
 
-## To Use
+    **Using the Calculator**
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+    The length 's' goes from highest to lowest, the value 'n' (the number of times s fits into the object) goes from lowest to highest. If this is not the case the program will throw an error. All measurements must have the same units.
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies and run the app
-npm install && npm start
-```
+    If you have any questions about the calculator you can email me at: weshenshall@gmail.com
 
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
-
-## Other Example Apps
-
-For more example apps, see the
-[list of boilerplates](http://electron.atom.io/community/#boilerplates)
-created by the awesome electron community.
-
-#### License [CC0 1.0 (Public Domain)](LICENSE.md)
+    **additional instruction inside of app**
