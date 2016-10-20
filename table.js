@@ -1,688 +1,340 @@
 
 
-$(document).ready(function () {
-
-
-  p = 0;
-  found = false;
-
-
-
-      $("#calculate_perimeter_dog").on("click", function () {
-
-        given_scale = .002;
-        var a0 = $("#a0").val();
-        var b0 = $("#b0").val();
-        var a1 = $("#a1").val();
-        var b1 = $("#b1").val();
-        var fd = $("#fdbox0").val();
-        var n =  Math.pow((a0 / given_scale),fd ) * b0;
-        var i = 0;
-        sum = 0;
-        p = 0;
-
-        length_array = [];
-        // takes each length and puts it into an array:
-        var i = 0
-        while (i < (number_fractal_dimensions + 1)){
-        length_array.push($("#a" + i ).val() );
-         i = i + 1;
-        }
-
-        // calculates fractal dimensions
-
-        for (i = 0; i < (counter - 2); i++) {
-          calculate('a' + (i) , 'b' + (i), 'a' + (i + 1), 'b' + (i + 1), 'fdbox' + (i)  );
-    }
-
-
-
-        dimensions_array = [];
-
-
-        //takes each dimension, puts it in an array
-        while (i < number_fractal_dimensions){
-        dimensions_array.push($("#fdbox" + i ).val() );
-        var i = i + 1;
-        }
-
-
-        // validates to make sure there are no blank spaces:
-        var_length = $("#a0").val()
-        length_array.some(function(length){
-          console.log(length)
-          if (length === " "){
-            alert('you left something blank')
-          }
-          if (length === ""){
-            alert('you left something blank')
-          }
-           if (length == 0) {
-            alert('you have typed in a 0 value, length may not be correct');
-          }
-
-          if (parseFloat(length) > parseFloat(var_length)){
-            console.log("length" +  length + "var_length" + var_length )
-          alert('all of the measurement lengths must be from highest to lowest please change value ' + length);
-          }
-          var_length = length
-        });
-
-
-
-      // find closest value(s) of scale to our given values
-
-      length_array.some(function(length){
-        // value = p + 1;
-        if (given_scale  === length){
-          found = true;
-          n = $("#b" + (p)).val();
-          m = n;
-          perimeter =   given_scale * n;
-          $("#perimeter").val(perimeter);
-          // console.log("equal");
-          return true;
-        }
-          else if (parseFloat(given_scale) < parseFloat(length)) {
-          value = (p + 1);
-          // console.log("less")
-
-        }
-          else if (parseFloat(given_scale) > parseFloat(length) && (p) <= 1) {
-            found = true;
-           var last_fd = $("#fdbox0").val();
-           var the_last_scale = $("#a0").val();
-           var the_last_n = $("#b0").val();
-           var r =  (Math.pow((the_last_scale / given_scale),  Math.abs(last_fd)) * the_last_n ); //(Math.pow((the_last_scale / given_scale), Math.abs(fd)) * the_last_n);
-           perimeter = given_scale * r;
-          //  console.log($("#perimeter").val());
-           $("#perimeter").val(perimeter);
-          //  console.log($("#perimeter").val());
-           return true;
-
-        }
-          else if (parseFloat(given_scale) > parseFloat(length)){
-
-
-              console.log('using 2 fds')
-              found = true;
-              upperboxa =  $("#a" + (value - 1)).val();
-              lowerboxa =  $("#a" + (value)).val();
-              upperfd = $("#fdbox" + (value - 1)).val();
-              lowerfd = $("#fdbox" + (value - 2)).val();
-              upperboxb =  $("#b" + (value - 1)).val();
-              lowerboxb =  $("#b" + (value)).val();
-              m = (lowerboxa - upperboxa ) / ((value) - (value - 1 ));
-              b = Math.abs(m * value) + parseFloat(lowerboxa)
-              x = (parseFloat(given_scale) - b) / m
-              y = m * x + b
-              m2 = (lowerfd - upperfd ) / 1;
-              b2 = Math.abs(m2 * (value - 1)) + parseFloat(lowerfd);
-              y2 = m2 * (x - 1) + b2;
-
-              if (x > 1.5 ){
-                new_n =  ((Math.pow((lowerboxa / given_scale), y2)) * lowerboxb);
-              } else {
-                new_n =  (Math.pow((upperboxa / given_scale), y2) * upperboxb);
-              }
-              perimeter = given_scale * new_n;
-              $("#perimeter").val(perimeter);
-              // console.log("greater then")
-              return true;
-            }
-
-
-          else {
-          console.log("There was a terrible error, you shouldnt be seeing this!");
-        }
-        sum = sum + parseFloat(length);
-        p = p + 1;
-        // console.log("p = " + p);
-
-      });
-
-
-      if (found === false){
-        var fd = $("#fdbox" + (value - 2)).val();
-        var last_scale = $("#a" + (value - 1)).val();
-        var last_n = $("#b" + (value - 1)).val();
-        var new_false =  (Math.pow((last_scale / given_scale), fd) * last_n);
-       perimeter = given_scale * new_false
-       $("#perimeter").val(perimeter);
-      }
-      found = false;
-      //
-      // perimeter =   given_scale * n;
-      // $("#perimeter").val(sum);
-
-      });
-
-      $("#calculate_perimeter_human").on("click", function () {
-        given_scale = .005;
-        var a0 = $("#a0").val();
-        var b0 = $("#b0").val();
-        var a1 = $("#a1").val();
-        var b1 = $("#b1").val();
-        var fd = $("#fdbox0").val();
-        var n =  Math.pow((a0 / given_scale),fd ) * b0;
-        var i = 0;
-        sum = 0;
-        p = 0;
-
-        length_array = [];
-        // takes each length and puts it into an array:
-        var i = 0
-        while (i < (number_fractal_dimensions + 1)){
-        length_array.push($("#a" + i ).val() );
-         i = i + 1;
-        }
-
-        // calculates fractal dimensions
-
-        for (i = 0; i < (counter - 2); i++) {
-          calculate('a' + (i) , 'b' + (i), 'a' + (i + 1), 'b' + (i + 1), 'fdbox' + (i)  );
-    }
-
-
-
-        dimensions_array = [];
-
-
-        //takes each dimension, puts it in an array
-        while (i < number_fractal_dimensions){
-        dimensions_array.push($("#fdbox" + i ).val() );
-        var i = i + 1;
-        }
-
-
-        // validates to make sure there are no blank spaces:
-        var_length = $("#a0").val()
-        length_array.some(function(length){
-          console.log(length)
-          if (length === " "){
-            alert('you left something blank')
-          }
-          if (length === ""){
-            alert('you left something blank')
-          }
-           if (length == 0) {
-            alert('you have typed in a 0 value, length may not be correct');
-          }
-
-          if (parseFloat(length) > parseFloat(var_length)){
-            console.log("length" +  length + "var_length" + var_length )
-          alert('all of the measurement lengths must be from highest to lowest please change value ' + length);
-          }
-          var_length = length
-        });
-
-
-
-      // find closest value(s) of scale to our given values
-
-      length_array.some(function(length){
-        // value = p + 1;
-        if (given_scale  === length){
-          found = true;
-          n = $("#b" + (p)).val();
-          m = n;
-          perimeter =   given_scale * n;
-          $("#perimeter").val(perimeter);
-          // console.log("equal");
-          return true;
-        }
-          else if (parseFloat(given_scale) < parseFloat(length)) {
-          value = (p + 1);
-          // console.log("less")
-
-        }
-          else if (parseFloat(given_scale) > parseFloat(length) && (p) <= 1) {
-            found = true;
-           var last_fd = $("#fdbox0").val();
-           var the_last_scale = $("#a0").val();
-           var the_last_n = $("#b0").val();
-           var r =  (Math.pow((the_last_scale / given_scale),  Math.abs(last_fd)) * the_last_n ); //(Math.pow((the_last_scale / given_scale), Math.abs(fd)) * the_last_n);
-           perimeter = given_scale * r;
-          //  console.log($("#perimeter").val());
-           $("#perimeter").val(perimeter);
-          //  console.log($("#perimeter").val());
-           return true;
-
-        }
-          else if (parseFloat(given_scale) > parseFloat(length)){
-
-
-              console.log('using 2 fds')
-              found = true;
-              upperboxa =  $("#a" + (value - 1)).val();
-              lowerboxa =  $("#a" + (value)).val();
-              upperfd = $("#fdbox" + (value - 1)).val();
-              lowerfd = $("#fdbox" + (value - 2)).val();
-              upperboxb =  $("#b" + (value - 1)).val();
-              lowerboxb =  $("#b" + (value)).val();
-              m = (lowerboxa - upperboxa ) / ((value) - (value - 1 ));
-              b = Math.abs(m * value) + parseFloat(lowerboxa)
-              x = (parseFloat(given_scale) - b) / m
-              y = m * x + b
-              m2 = (lowerfd - upperfd ) / 1;
-              b2 = Math.abs(m2 * (value - 1)) + parseFloat(lowerfd);
-              y2 = m2 * (x - 1) + b2;
-
-              if (x > 1.5 ){
-                new_n =  ((Math.pow((lowerboxa / given_scale), y2)) * lowerboxb);
-              } else {
-                new_n =  (Math.pow((upperboxa / given_scale), y2) * upperboxb);
-              }
-              perimeter = given_scale * new_n;
-              $("#perimeter").val(perimeter);
-              // console.log("greater then")
-              return true;
-            }
-
-
-          else {
-          console.log("There was a terrible error, you shouldnt be seeing this!");
-        }
-        sum = sum + parseFloat(length);
-        p = p + 1;
-        // console.log("p = " + p);
-
-      });
-
-
-      if (found === false){
-        var fd = $("#fdbox" + (value - 2)).val();
-        var last_scale = $("#a" + (value - 1)).val();
-        var last_n = $("#b" + (value - 1)).val();
-        var new_false =  (Math.pow((last_scale / given_scale), fd) * last_n);
-       perimeter = given_scale * new_false
-       $("#perimeter").val(perimeter);
-      }
-      found = false;
-      //
-      // perimeter =   given_scale * n;
-      // $("#perimeter").val(sum);
-
-      });
-
-
-
-
-
-
-    $("#calculate_perimeter_ant").on("click", function () {
-
-      given_scale = .00002;
-      var a0 = $("#a0").val();
-      var b0 = $("#b0").val();
-      var a1 = $("#a1").val();
-      var b1 = $("#b1").val();
-      var fd = $("#fdbox0").val();
-      var n =  Math.pow((a0 / given_scale),fd ) * b0;
-      var i = 0;
-      sum = 0;
-      p = 0;
-
-      length_array = [];
-      // takes each length and puts it into an array:
-      var i = 0
-      while (i < (number_fractal_dimensions + 1)){
-      length_array.push($("#a" + i ).val() );
-       i = i + 1;
-      }
-
-      // calculates fractal dimensions
-
-      for (i = 0; i < (counter - 2); i++) {
-        calculate('a' + (i) , 'b' + (i), 'a' + (i + 1), 'b' + (i + 1), 'fdbox' + (i)  );
+  //note: this is not being used
+
+$(function(){
+  var selectedRow = '';
+  var customerId = ''
+  var id = '';
+  if (window.location.pathname.split('/')[1] === "work_items") {
+    loadTable();
   }
+  $(window).on("beforeunload", function() {
+   window.clearTimeout(window.timer);
+  });
 
-
-
-      dimensions_array = [];
-
-
-      //takes each dimension, puts it in an array
-      while (i < number_fractal_dimensions){
-      dimensions_array.push($("#fdbox" + i ).val() );
-      var i = i + 1;
-      }
-
-
-      // validates to make sure there are no blank spaces:
-      var_length = $("#a0").val()
-      length_array.some(function(length){
-        console.log(length)
-        if (length === " "){
-          alert('you left something blank')
+  function loadTable(){
+    $.ajax({
+      url: '/work_items',
+      method: 'GET',
+      dataType: 'json',
+      data: {}
+    }).done(function(responseData){
+      var firstRow;
+      $('#queue-body').empty();
+      for(var i = 0; i < responseData.length; i++)
+      {
+        var body = $('#queue-body');
+        var row = $('<tr>').attr('id', responseData[i].id);
+        var moved = $('<td>').html(responseData[i].moved_to_queue);
+        var created = $('<td>').html(responseData[i].created_at);
+        var team = $('<td>').html(responseData[i].title);
+        var stepName = $('<td>').html(responseData[i].step_name);
+        var customerInfo = $('<td>').html(responseData[i].contact_info);
+        var assigned =  $('<td>').html(responseData[i].name);
+        row.append(moved);
+        row.append(created);
+        row.append(team);
+        row.append(stepName);
+        row.append(customerInfo);
+        row.append(assigned);
+        body.append(row);
+        if(i === 0){
+          firstRow = row;
         }
-        if (length === ""){
-          alert('you left something blank')
-        }
-         if (length == 0) {
-          alert('you have typed in a 0 value, length may not be correct');
-        }
-
-        if (parseFloat(length) > parseFloat(var_length)){
-          console.log("length" +  length + "var_length" + var_length )
-        alert('all of the measurement lengths must be from highest to lowest please change value ' + length);
-        }
-        var_length = length
-      });
-
-
-
-    // find closest value(s) of scale to our given values
-
-    length_array.some(function(length){
-      // value = p + 1;
-      if (given_scale  === length){
-        found = true;
-        n = $("#b" + (p)).val();
-        m = n;
-        perimeter =   given_scale * n;
-        $("#perimeter").val(perimeter);
-        // console.log("equal");
-        return true;
-      }
-        else if (parseFloat(given_scale) < parseFloat(length)) {
-        value = (p + 1);
-        // console.log("less")
-
-      }
-        else if (parseFloat(given_scale) > parseFloat(length) && (p) <= 1) {
-          found = true;
-         var last_fd = $("#fdbox0").val();
-         var the_last_scale = $("#a0").val();
-         var the_last_n = $("#b0").val();
-         var r =  (Math.pow((the_last_scale / given_scale),  Math.abs(last_fd)) * the_last_n ); //(Math.pow((the_last_scale / given_scale), Math.abs(fd)) * the_last_n);
-         perimeter = given_scale * r;
-        //  console.log($("#perimeter").val());
-         $("#perimeter").val(perimeter);
-        //  console.log($("#perimeter").val());
-         return true;
-
-      }
-        else if (parseFloat(given_scale) > parseFloat(length)){
-
-
-            console.log('using 2 fds')
-            found = true;
-            upperboxa =  $("#a" + (value - 1)).val();
-            lowerboxa =  $("#a" + (value)).val();
-            upperfd = $("#fdbox" + (value - 1)).val();
-            lowerfd = $("#fdbox" + (value - 2)).val();
-            upperboxb =  $("#b" + (value - 1)).val();
-            lowerboxb =  $("#b" + (value)).val();
-            m = (lowerboxa - upperboxa ) / ((value) - (value - 1 ));
-            b = Math.abs(m * value) + parseFloat(lowerboxa)
-            x = (parseFloat(given_scale) - b) / m
-            y = m * x + b
-            m2 = (lowerfd - upperfd ) / 1;
-            b2 = Math.abs(m2 * (value - 1)) + parseFloat(lowerfd);
-            y2 = m2 * (x - 1) + b2;
-
-            if (x > 1.5 ){
-              new_n =  ((Math.pow((lowerboxa / given_scale), y2)) * lowerboxb);
-            } else {
-              new_n =  (Math.pow((upperboxa / given_scale), y2) * upperboxb);
-            }
-            perimeter = given_scale * new_n;
-            $("#perimeter").val(perimeter);
-            // console.log("greater then")
-            return true;
-          }
-
-
-        else {
-        console.log("There was a terrible error, you shouldnt be seeing this!");
-      }
-      sum = sum + parseFloat(length);
-      p = p + 1;
-      // console.log("p = " + p);
-
-    });
-
-
-    if (found === false){
-      var fd = $("#fdbox" + (value - 2)).val();
-      var last_scale = $("#a" + (value - 1)).val();
-      var last_n = $("#b" + (value - 1)).val();
-      var new_false =  (Math.pow((last_scale / given_scale), fd) * last_n);
-     perimeter = given_scale * new_false
-     $("#perimeter").val(perimeter);
-    }
-    found = false;
-    //
-    // perimeter =   given_scale * n;
-    // $("#perimeter").val(sum);
-
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  $("#calculate_perimeter").on("click", function () {
-
-    given_scale = $("#scale").val();
-    var a0 = $("#a0").val();
-    var b0 = $("#b0").val();
-    var a1 = $("#a1").val();
-    var b1 = $("#b1").val();
-    var fd = $("#fdbox0").val();
-    var n =  Math.pow((a0 / given_scale),fd ) * b0;
-    var i = 0;
-    sum = 0;
-    p = 0;
-
-    length_array = [];
-    // takes each length and puts it into an array:
-    var i = 0
-    while (i < (number_fractal_dimensions + 1)){
-    length_array.push($("#a" + i ).val() );
-     i = i + 1;
-    }
-
-    // calculates fractal dimensions
-
-    for (i = 0; i < (counter - 2); i++) {
-      calculate('a' + (i) , 'b' + (i), 'a' + (i + 1), 'b' + (i + 1), 'fdbox' + (i)  );
-}
-
-
-
-    dimensions_array = [];
-
-
-    //takes each dimension, puts it in an array
-    while (i < number_fractal_dimensions){
-    dimensions_array.push($("#fdbox" + i ).val() );
-    var i = i + 1;
-    }
-
-
-    // validates to make sure there are no blank spaces:
-    var_length = $("#a0").val()
-    length_array.some(function(length){
-      console.log(length)
-      if (length === " "){
-        alert('you left something blank')
-      }
-      if (length === ""){
-        alert('you left something blank')
-      }
-       if (length == 0) {
-        alert('you have typed in a 0 value, length may not be correct');
       }
 
-      if (parseFloat(length) > parseFloat(var_length)){
-        console.log("length" +  length + "var_length" + var_length )
-      alert('all of the measurement lengths must be from highest to lowest please change value ' + length);
+      if (id != '' && $('#'+id).length){
+        var lastRow = $('#'+id);
+        var comment = $('#queue-comment').val()
+        lastRow.trigger('click');
+        $('#queue-comment').val(comment);
       }
-      var_length = length
-    });
-
-
-
-  // find closest value(s) of scale to our given values
-
-  length_array.some(function(length){
-    // value = p + 1;
-    if (given_scale  === length){
-      found = true;
-      n = $("#b" + (p)).val();
-      m = n;
-      perimeter =   given_scale * n;
-      $("#perimeter").val(perimeter);
-      // console.log("equal");
-      return true;
-    }
-      else if (parseFloat(given_scale) < parseFloat(length)) {
-      value = (p + 1);
-      // console.log("less")
-
-    }
-      else if (parseFloat(given_scale) > parseFloat(length) && (p) <= 1) {
-        found = true;
-       var last_fd = $("#fdbox0").val();
-       var the_last_scale = $("#a0").val();
-       var the_last_n = $("#b0").val();
-       var r =  (Math.pow((the_last_scale / given_scale),  Math.abs(last_fd)) * the_last_n ); //(Math.pow((the_last_scale / given_scale), Math.abs(fd)) * the_last_n);
-       perimeter = given_scale * r;
-      //  console.log($("#perimeter").val());
-       $("#perimeter").val(perimeter);
-      //  console.log($("#perimeter").val());
-       return true;
-
-    }
-      else if (parseFloat(given_scale) > parseFloat(length)){
-
-
-          console.log('using 2 fds')
-          found = true;
-          upperboxa =  $("#a" + (value - 1)).val();
-          lowerboxa =  $("#a" + (value)).val();
-          upperfd = $("#fdbox" + (value - 1)).val();
-          lowerfd = $("#fdbox" + (value - 2)).val();
-          upperboxb =  $("#b" + (value - 1)).val();
-          lowerboxb =  $("#b" + (value)).val();
-          m = (lowerboxa - upperboxa ) / ((value) - (value - 1 ));
-          b = Math.abs(m * value) + parseFloat(lowerboxa)
-          x = (parseFloat(given_scale) - b) / m
-          y = m * x + b
-          m2 = (lowerfd - upperfd ) / 1;
-          b2 = Math.abs(m2 * (value - 1)) + parseFloat(lowerfd);
-          y2 = m2 * (x - 1) + b2;
-
-          if (x > 1.5 ){
-            new_n =  ((Math.pow((lowerboxa / given_scale), y2)) * lowerboxb);
-          } else {
-            new_n =  (Math.pow((upperboxa / given_scale), y2) * upperboxb);
-          }
-          perimeter = given_scale * new_n;
-          $("#perimeter").val(perimeter);
-          // console.log("greater then")
-          return true;
-        }
-
-
       else {
-      console.log("There was a terrible error, you shouldnt be seeing this!");
-    }
-    sum = sum + parseFloat(length);
-    p = p + 1;
-    // console.log("p = " + p);
+        firstRow.trigger('click');
+      }
 
-  });
-
-
-  if (found === false){
-    var fd = $("#fdbox" + (value - 2)).val();
-    var last_scale = $("#a" + (value - 1)).val();
-    var last_n = $("#b" + (value - 1)).val();
-    var new_false =  (Math.pow((last_scale / given_scale), fd) * last_n);
-   perimeter = given_scale * new_false
-   $("#perimeter").val(perimeter);
+    });
+      window.timer = window.setTimeout(loadTable, 10000);
   }
-  found = false;
-  //
-  // perimeter =   given_scale * n;
-  // $("#perimeter").val(sum);
+
+  $('#queue_table').on('click', 'tr', function(){
+    selectedRow = $(this);
+    id = selectedRow.attr('id');
+    // $('button').prop('disabled', false);
+    // $('button').css('color', 'black');
+    $('tr').css('background-color', '');
+    selectedRow.css('background-color', 'aqua');
+    $.ajax({
+      url: '/work_items/' + selectedRow.attr('id') + '/edit',
+      method: 'GET',
+      dataType: 'json',
+      data: {}
+    }).done(function(responseData){
+      console.log(responseData);
+      cust = $('#customer-info');
+      cust.empty();
+      cust.append($('<div>').attr('id', responseData[0].step_number).html(responseData[0].name));
+      cust.append($('<div>').html(responseData[0].address_1));
+      cust.append($('<div>').html(responseData[0].address_2));
+      cust.append($('<div>').html(responseData[0].city));
+      cust.append($('<div>').html(responseData[0].phone));
+      cust.append($('<div>').html(responseData[0].email));
+
+      var hist = $('#queue-history').val(responseData[0].history_text);
+      if(responseData[0].step_number == '1') {
+         $("#queue-back").prop("disabled", true)//.removeClass('btn-primary').addClass('btn-disabled');
+      }
+      else {
+        $("#queue-back").prop("disabled", false)//.removeClass();
+      }
+      //var comment = $('#queue-comment');
+      //$('#queue-comment').val('');
+
+    });
+  });
+  $('#queue-back').on('click', function(){
+    saveComments(1);
 
   });
 
 
 
 
-  counter =   $('#myTable tr').length - 1;
-    $("#addrow").on("click", function () {
-      // console.log(counter);
-        var newRow = $("<tr>");
-        var cols = "";
-        cols += '<td class = "name measurement">Measurement ' + counter + ' </td>';
-        cols += '<td><input class = "text_box" id = "a' + (counter - 1) + '" type="text" name="name' + (counter - 1) + '"/></td>';
-        cols += '<td><input class = "text_box" id = "b' + (counter - 1) + '"  type="text" name="price' + (counter - 1) + '"/></td>';
-        cols += '<td><input disabled="disabled" id = "fdbox' + (counter - 2) + '"  type="text" class=" text_box calc_text"/></td>';
-        cols += '<td><input type="button" class = "delete_button" id="ibtnDel' + (counter - 3) + '"  value="Delete"></td></tr>';
-        newRow.append(cols);
-        $("table.order-list").append(newRow);
-        counter++;
-        number_fractal_dimensions = counter - 2;
-        if (counter == 100) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
-        $("#ibtnDel" + (counter - 5)).css('display', 'none')
 
+  $('#queue-escalate').on('click', function(){
+    if($('#queue-comment').val === '') {
+      return;
+    }
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(2);
+    }
+    else {
+    //  post Comments(2);
+    }
+  });
+
+  $('#queue-forward').on('click', function(){
+    if($('#queue-comment').val === '') {
+      return;
+    }
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(3);
+    }
+    else {
+    //  post Comments(3);
+    //  window.location.href = '/work_items';
+    }
+  });
+
+  $('#queue-save').on('click', function(){
+    if($('#queue-comment').val === '') {
+      return;
+    }
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(4);
+    }
+    else {
+
+    //  post Comments(4);
+      window.location.href = '/work_items';
+    }
+  });
+
+  $('#work-item-cancel').on('click', function(){
+    window.location.href = '/work_items';
+  });
+
+  $('#myModal').on('click', '#save-customer', function(){
+    $('.new_customer').submit();
+  });
+
+  function saveComments(action){
+    var comment = $('#queue-comment');
+    if(comment.val() === '') {
+      return;
+    }
+    var sendData = {};
+    sendData['action'] =  action;
+    sendData['comment'] = comment.val();
+    sendData['work_item_key'] = selectedRow.attr('id');
+    console.log(sendData);
+    $.ajax({
+       url: '/work_items/' + selectedRow.attr('id'),
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: 'PATCH',
+      dataType: 'json',
+      data: {work_item: sendData}
+    }).done(function(){
+      $('#queue-body').empty();
+      loadTable();
     });
 
-    $("table.order-list").on("change", 'input[name^="price"]', function (event) {
-        calculateRow($(this).closest("tr"));
-        calculateGrandTotal();
-    });
+  }
 
 
 
-    $("table.order-list").on("click", ".delete_button", function (event) {
-      // console.log(counter);
-        $("#ibtnDel" + (counter - 5)).css('display', 'initial')
-        $(this).closest("tr").remove();
-        calculateGrandTotal();
-        counter --;
-        if (counter < 5) $('#addrow').attr("disabled", false).prop('value', "Add Row");
-    });
+
+      function clearTable() {
+          var tableRef = document.getElementById('tables');
+
+          if (tableRef) {
+              while (tableRef.rows.length > 0) {
+                  tableRef.deleteRow(0);
+              }
+          }
+      }
+
+
+
+          function clearTable2() {
+          var tableRef = document.getElementById('tables2');
+
+          if (tableRef) {
+              while (tableRef.rows.length > 0) {
+                  tableRef.deleteRow(0);
+              }
+          }
+      }
+
+
+          function generate_table2() {
+        // get the reference for the body
+        var body = document.getElementsByTagName("tablediv")[0];
+
+        // creates a <table> element and a <tbody> element
+        var tbl     = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+
+      tbl.setAttribute("id", "tables2");
+        // creating all cells
+        for (var i = 0; i < 1; i++) {
+          // creates a table row
+          var row = document.createElement("tr");
+
+          for (var j = 0; j < 4; j++) {
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+            var cell = document.createElement("td");
+
+            var stuff = "Measurement Length_";
+
+              if (j === 1) {
+
+                    stuff =   "_# of times it fits in_";
+            }
+
+              if (j === 2) {
+                  stuff =   "____Scale Ratio____"  ;
+              }
+
+                if (j === 3) {
+                  stuff =  "_Perimeter of Shape_";
+
+
+
+                }
+
+            var cellText = document.createTextNode(stuff);
+
+              cell.appendChild(cellText);
+            row.appendChild(cell);
+          }
+
+
+
+          // add the row to the end of the table body
+          tblBody.appendChild(row);
+        }
+
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        tablediv.appendChild(tbl);
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "2");
+      }
+
+      function generate_table() {
+        // get the reference for the body
+        var body = document.getElementsByTagName("tablediv")[0];
+
+        // creates a <table> element and a <tbody> element
+        var tbl     = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+        tbl.setAttribute("id", "tables");
+        // creating all cells
+
+
+
+
+          for (var i = 0; i < 50; i++) {
+          // creates a table row
+          var row = document.createElement("tr");
+
+          for (var j = 0; j < 4; j++) {
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+            var cell = document.createElement("td");
+
+            var stuff = ((1 / Math.pow(Math.E, (Math.log((1/tb) ) ) /fdbox.innerHTML )) / (1 / Math.pow(Math.E, (Math.log((1/tb * (i * .1)) ) ) /fdbox.innerHTML ))) * ta  ;
+
+              if (j === 1) {
+                    stuff =    tb * (i * .1);
+
+            }
+
+              if (j === 2) {
+                  stuff =  (1 / Math.pow(Math.E, (Math.log((1/tb * (i * .1)) ) ) /fdbox.innerHTML ) ) ;
+              }
+
+                if (j === 3) {
+                  stuff =   (((1 / Math.pow(Math.E, (Math.log((1/tb * (i * .1)) ) ) /fdbox.innerHTML )) / (1 / Math.pow(Math.E, (Math.log((1/tb * (i * .1)) ) ) /fdbox.innerHTML ))) * ta) * tb * (i * .1);
+
+                // chagne 19.85 to some variable to make it work! its not working yet!
+                }
+
+            var cellText = document.createTextNode(stuff);
+
+              cell.appendChild(cellText);
+            row.appendChild(cell);
+          }
+          // add the row to the end of the table body
+          tblBody.appendChild(row);
+        }
+
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+       tablediv.appendChild(tbl);
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "2");
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 });
-function calculateRow(row) {
-    var price = +row.find('input[name^="price"]').val();
-}
-
-function calculateGrandTotal() {
-    var grandTotal = 0;
-    $("table.order-list").find('input[name^="price"]').each(function () {
-        grandTotal += +$(this).val();
-    });
-    $("#grandtotal").text(grandTotal.toFixed(2));
-}

@@ -1,194 +1,245 @@
+$(document).ready(function () {
+
+  p = 0;
+  found = false;
+
+  $("#calculate_perimeter").on("click", function () {
+    // set variables to be used in calcuations
+    given_scale = $("#scale").val();
+    var a0 = $("#a0").val();
+    var b0 = $("#b0").val();
+    var a1 = $("#a1").val();
+    var b1 = $("#b1").val();
+    var fd = $("#fdbox0").val();
+    var n =  Math.pow((a0 / given_scale),fd ) * b0;
+    var i = 0;
+    sum = 0;
+    p = 0;
+
+    // create length array
+    length_array = [];
+
+    // takes each length and puts it into an array:
+    var i = 0
+    while (i < (number_fractal_dimensions + 1)){
+      length_array.push($("#a" + i ).val() );
+      i = i + 1;
+    }
+
+    // calculates fractal dimensions
+    for (i = 0; i < (counter - 2); i++) {
+      calculate('a' + (i) , 'b' + (i), 'a' + (i + 1), 'b' + (i + 1), 'fdbox' + (i)  );
+    }
+
+      // create length array
+    dimensions_array = [];
+
+    //takes each dimension, puts it in an array
+    while (i < number_fractal_dimensions){
+    dimensions_array.push($("#fdbox" + i ).val() );
+    var i = i + 1;
+    }
 
 
-$(function(){
+    // validates to make sure there are no blank spaces:
+    var_length = $("#a0").val()
+    length_array.some(function(length){
+      console.log(length)
+      if (length === " "){
+        alert('you left something blank')
+      }
+      if (length === ""){
+        alert('you left something blank')
+      }
+       if (length == 0) {
+        alert('you have typed in a 0 value, length may not be correct');
+      }
 
+      if (parseFloat(length) > parseFloat(var_length)){
+        console.log("length" +  length + "var_length" + var_length )
+      alert('all of the measurement lengths must be from highest to lowest please change value ' + length);
+      }
+      var_length = length
+    });
 
-  var selectedRow = '';
-  var customerId = ''
+  // find closest value(s) of scale to our given values
 
+    length_array.some(function(length){
+    // value = p + 1;
+      if (given_scale  === length){
+        found = true;
+        n = $("#b" + (p)).val();
+        m = n;
+        perimeter =   given_scale * n;
+        $("#perimeter").val(perimeter);
+        // console.log("equal");
+        return true;
+      }
+      else if (parseFloat(given_scale) < parseFloat(length)) {
+        value = (p + 1);
+        // console.log("less")
 
-  var id = '';
-  if (window.location.pathname.split('/')[1] === "work_items") {
+      }
+      else if (parseFloat(given_scale) > parseFloat(length) && (p) <= 1) {
+         found = true;
+         var last_fd = $("#fdbox0").val();
+         var the_last_scale = $("#a0").val();
+         var the_last_n = $("#b0").val();
+         var r =  (Math.pow((the_last_scale / given_scale),  Math.abs(last_fd)) * the_last_n ); //(Math.pow((the_last_scale / given_scale), Math.abs(fd)) * the_last_n);
+         perimeter = given_scale * r;
+        //  console.log($("#perimeter").val());
+         $("#perimeter").val(perimeter);
+        //  console.log($("#perimeter").val());
+         return true;
+      }
+      else if (parseFloat(given_scale) > parseFloat(length)){
+        console.log('using 2 fds')
+        found = true;
+        upperboxa =  $("#a" + (value - 1)).val();
+        lowerboxa =  $("#a" + (value)).val();
+        upperfd = $("#fdbox" + (value - 1)).val();
+        lowerfd = $("#fdbox" + (value - 2)).val();
+        upperboxb =  $("#b" + (value - 1)).val();
+        lowerboxb =  $("#b" + (value)).val();
+        m = (lowerboxa - upperboxa ) / ((value) - (value - 1 ));
+        b = Math.abs(m * value) + parseFloat(lowerboxa)
+        x = (parseFloat(given_scale) - b) / m
+        y = m * x + b
+        m2 = (lowerfd - upperfd ) / 1;
+        b2 = Math.abs(m2 * (value - 1)) + parseFloat(lowerfd);
+        y2 = m2 * (x - 1) + b2;
 
-    // $('button').prop('disabled', true);
-    // $('button').css('color', 'grey');
-    loadTable();
-
- }
-
- $(window).on("beforeunload", function() {
-   window.clearTimeout(window.timer);
-
-});
-
-  function loadTable(){
-    $.ajax({
-      url: '/work_items',
-      method: 'GET',
-      dataType: 'json',
-      data: {}
-    }).done(function(responseData){
-      var firstRow;
-      $('#queue-body').empty();
-      for(var i = 0; i < responseData.length; i++)
-      {
-        var body = $('#queue-body');
-        var row = $('<tr>').attr('id', responseData[i].id);
-        var moved = $('<td>').html(responseData[i].moved_to_queue);
-        var created = $('<td>').html(responseData[i].created_at);
-        var team = $('<td>').html(responseData[i].title);
-        var stepName = $('<td>').html(responseData[i].step_name);
-        var customerInfo = $('<td>').html(responseData[i].contact_info);
-        var assigned =  $('<td>').html(responseData[i].name);
-        row.append(moved);
-        row.append(created);
-        row.append(team);
-        row.append(stepName);
-        row.append(customerInfo);
-        row.append(assigned);
-        body.append(row);
-        if(i === 0)
-        {
-          firstRow = row;
+        if (x > 1.5 ){
+        new_n =  ((Math.pow((lowerboxa / given_scale), y2)) * lowerboxb);
+        } else {
+          new_n =  (Math.pow((upperboxa / given_scale), y2) * upperboxb);
         }
-      }
 
-      if (id != '' && $('#'+id).length){
-        var lastRow = $('#'+id);
-        var comment = $('#queue-comment').val()
-        lastRow.trigger('click');
-        $('#queue-comment').val(comment);
-      }
-      else {
-        firstRow.trigger('click');
-      }
+        perimeter = given_scale * new_n;
+        $("#perimeter").val(perimeter);
+        // console.log("greater then")
+        return true;
 
-      });
-      window.timer = window.setTimeout(loadTable, 10000);
-    }
-
-
-  $('#queue_table').on('click', 'tr', function(){
-    selectedRow = $(this);
-    id = selectedRow.attr('id');
-    // $('button').prop('disabled', false);
-    // $('button').css('color', 'black');
-    $('tr').css('background-color', '');
-    selectedRow.css('background-color', 'aqua');
-    $.ajax({
-      url: '/work_items/' + selectedRow.attr('id') + '/edit',
-      method: 'GET',
-      dataType: 'json',
-      data: {}
-    }).done(function(responseData){
-      console.log(responseData);
-      cust = $('#customer-info');
-      cust.empty();
-      cust.append($('<div>').attr('id', responseData[0].step_number).html(responseData[0].name));
-      cust.append($('<div>').html(responseData[0].address_1));
-      cust.append($('<div>').html(responseData[0].address_2));
-      cust.append($('<div>').html(responseData[0].city));
-      cust.append($('<div>').html(responseData[0].phone));
-      cust.append($('<div>').html(responseData[0].email));
-
-      var hist = $('#queue-history').val(responseData[0].history_text);
-      if(responseData[0].step_number == '1') {
-         $("#queue-back").prop("disabled", true)//.removeClass('btn-primary').addClass('btn-disabled');
       }
       else {
-        $("#queue-back").prop("disabled", false)//.removeClass();
+        console.log("There was a terrible error, you shouldnt be seeing this!");
       }
-      //var comment = $('#queue-comment');
-      //$('#queue-comment').val('');
-
-    });
-  });
-  $('#queue-back').on('click', function(){
-    saveComments(1);
-
-  });
-
-
-
-
-
-  $('#queue-escalate').on('click', function(){
-    if($('#queue-comment').val === '') {
-      return;
-    }
-    var pair = window.location.search.split('=')
-    if (pair[0] === "")
-    {
-      saveComments(2);
-    }
-    else {
-    //  post Comments(2);
-    }
-  });
-
-  $('#queue-forward').on('click', function(){
-    if($('#queue-comment').val === '') {
-      return;
-    }
-    var pair = window.location.search.split('=')
-    if (pair[0] === "")
-    {
-      saveComments(3);
-    }
-    else {
-    //  post Comments(3);
-    //  window.location.href = '/work_items';
-    }
-  });
-
-  $('#queue-save').on('click', function(){
-    if($('#queue-comment').val === '') {
-      return;
-    }
-    var pair = window.location.search.split('=')
-    if (pair[0] === "")
-    {
-      saveComments(4);
-    }
-    else {
-
-    //  post Comments(4);
-      window.location.href = '/work_items';
-    }
-  });
-
-  $('#work-item-cancel').on('click', function(){
-    window.location.href = '/work_items';
-  });
-
-  $('#myModal').on('click', '#save-customer', function(){
-    $('.new_customer').submit();
-  });
-
-  function saveComments(action){
-    var comment = $('#queue-comment');
-    if(comment.val() === '') {
-      return;
-    }
-    var sendData = {};
-    sendData['action'] =  action;
-    sendData['comment'] = comment.val();
-    sendData['work_item_key'] = selectedRow.attr('id');
-    console.log(sendData);
-    $.ajax({
-       url: '/work_items/' + selectedRow.attr('id'),
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      method: 'PATCH',
-      dataType: 'json',
-      data: {work_item: sendData}
-    }).done(function(){
-      $('#queue-body').empty();
-      loadTable();
+      sum = sum + parseFloat(length);
+      p = p + 1;
     });
 
+
+    if (found === false){
+      var fd = $("#fdbox" + (value - 2)).val();
+      var last_scale = $("#a" + (value - 1)).val();
+      var last_n = $("#b" + (value - 1)).val();
+      var new_false =  (Math.pow((last_scale / given_scale), fd) * last_n);
+      perimeter = given_scale * new_false
+      $("#perimeter").val(perimeter);
+    }
+    found = false;
+  });
+
+  counter =   $('#myTable tr').length - 1;
+  $("#addrow").on("click", function () {
+
+    var newRow = $("<tr>");
+    var cols = "";
+    cols += '<td class = "name measurement">Measurement ' + counter + ' </td>';
+    cols += '<td><input class = "text_box" id = "a' + (counter - 1) + '" type="text" name="name' + (counter - 1) + '"/></td>';
+    cols += '<td><input class = "text_box" id = "b' + (counter - 1) + '"  type="text" name="price' + (counter - 1) + '"/></td>';
+    cols += '<td><input disabled="disabled" id = "fdbox' + (counter - 2) + '"  type="text" class=" text_box calc_text"/></td>';
+    cols += '<td><input type="button" class = "delete_button" id="ibtnDel' + (counter - 3) + '"  value="Delete"></td></tr>';
+    newRow.append(cols);
+    $("table.order-list").append(newRow);
+    counter++;
+    number_fractal_dimensions = counter - 2;
+    if (counter == 100) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
+    $("#ibtnDel" + (counter - 5)).css('display', 'none')
+
+  });
+
+  $("table.order-list").on("change", 'input[name^="price"]', function (event) {
+    calculateRow($(this).closest("tr"));
+    calculateGrandTotal();
+  });
+
+  $("table.order-list").on("click", ".delete_button", function (event) {
+    // console.log(counter);
+      $("#ibtnDel" + (counter - 5)).css('display', 'initial')
+      $(this).closest("tr").remove();
+      calculateGrandTotal();
+      counter --;
+      if (counter < 5) $('#addrow').attr("disabled", false).prop('value', "Add Row");
+  });
+
+  var a = 2
+  var a = ['1']
+  a.push($("a").val())
+  number_fractal_dimensions = 1
+
+    //   Fractal dimension calculator script:
+
+  var fd = 0;
+  var ta = 0;
+  var tb = 0;
+  var tc = 0;
+  var td = 0;
+
+  function calc2(){
+    ta  = Number(document.getElementById("ta").value);
+    tb  = Number(document.getElementById("tb").value);
+    tc  = Number(document.getElementById("tc").value);
+    td  = Number(document.getElementById("td").value);
+    tctd = tc.value / td.value;
+    fd = (Number(Math.log10(tb/td)))  / (Number(Math.log10(ta/tc))) ;
+    fdbox.innerHTML = fd * -1;
+   }
+
+   // calculates fractal dimensions
+
+  function calculate(a,b,c,d,e) {
+
+  ta  = Number(document.getElementById(a).value);
+  tb  = Number(document.getElementById(b).value);
+  tc  = Number(document.getElementById(c).value);
+  td  = Number(document.getElementById(d).value);
+  tctd = tc / td;
+  fd = (Number(Math.log10(tb/td)))  / (Number(Math.log10(ta/tc))) ;
+  //(math.log(tc / td) ) / (math.log(ta / tb) );
+  $("#" + e  ).val(fd * -1)
+    console.log('you clicked and everything executed')
   }
 
+  function find_dimension(){
+    x = document.getElementById('coordinate').value;
+    upper_x = parseFloat(Math.ceil(x));
+    lower_x = parseFloat(Math.floor(x));
+    upper_y = parseFloat(document.getElementById( "_" + upper_x).value);
+    lower_y = parseFloat(document.getElementById( "_" + lower_x).value);
+    // equation of coordinates given between two points
+    //
+    m =  (upper_y - lower_y) / (upper_x - lower_x)
+    b =   lower_y + (-Math.abs(m * lower_x))
+    y = (m * x) + b
+    x_value.innerHTML = y;
+  }
 
+    // apend to table
+    $('.add').on('click', function() {
+      $('.large_table').append('<tr><td>my data</td><td>more data</td></tr>');
+      });
 
+    function calculateRow(row) {
+      var price = +row.find('input[name^="price"]').val();
+    }
+
+    function calculateGrandTotal() {
+      var grandTotal = 0;
+      $("table.order-list").find('input[name^="price"]').each(function () {
+        grandTotal += +$(this).val();
+      });
+      $("#grandtotal").text(grandTotal.toFixed(2));
+    }
 
 });
