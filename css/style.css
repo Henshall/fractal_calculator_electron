@@ -74,7 +74,7 @@ width: 50%;
   font-size: 30px;
   font-size: 1.5vw;
   width: 23%;
-  text-align: center;
+  text-align: left;
   left: 4%;
   position: relative;
 }
@@ -327,7 +327,7 @@ background-color: rgba(120, 134, 138, 0.64);
 
 .test::after {
   content: "";
-  background-image: url("../background.jpg");
+  background-image: url("../images/background.jpg");
   background-repeat: repeat;
   opacity: 0.1;
   top: 0;
@@ -351,7 +351,7 @@ width: 69%;
   text-align: center;
   margin: auto;
   height: 750px;
-  background-image: url(../britain.png);
+  background-image: url(../images/britain.png);
   background-repeat: no-repeat;
 }
 
