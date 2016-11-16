@@ -148,7 +148,7 @@ $(document).ready(function () {
     cols += '<td class = "name measurement">Measurement ' + counter + ' </td>';
     cols += '<td><input class = "text_box" id = "a' + (counter - 1) + '" type="text" name="name' + (counter - 1) + '"/></td>';
     cols += '<td><input class = "text_box" id = "b' + (counter - 1) + '"  type="text" name="price' + (counter - 1) + '"/></td>';
-    cols += '<td><input disabled="disabled" id = "fdbox' + (counter - 2) + '"  type="text" class=" text_box calc_text"/></td>';
+    cols += '<td><input disabled="disabled" id = "fdbox' + (counter - 2) + '"  type="text" class=" fd_box calc_text"/></td>';
     cols += '<td><input type="button" class = "delete_button" id="ibtnDel' + (counter - 3) + '"  value="Delete"></td></tr>';
     newRow.append(cols);
     $("table.order-list").append(newRow);

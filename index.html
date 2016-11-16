@@ -6,19 +6,19 @@
   </head>
   <body>
     <!-- All of the Node.js APIs are available in this renderer process. -->
-
-
-  <div class="test">
-  </div>
-  <div class="form_text">
-    <br><br>
-    <div class="centered">
-      <h1>Fractal Calculator:</h1>
-        S = Unit Length (km)<br>
-      N = # of times Unit Length Fits Into Object
-
+    <div class="top_bar">
+      <div class="centered">
+      <span class="title">Fractal Calculator:</span>
+      </div>
     </div>
-  <br>
+
+    <div class="centered elements">
+        S = Unit Length (km)   &nbsp; &nbsp; &nbsp; &nbsp;   N = # of times Unit Length Fits Into Object
+    </div>
+
+    <div class="form_text">
+
+    <br>
 
     <div class="my_table_center">
     <table id="myTable" class="order-list">
@@ -31,14 +31,14 @@
                 <td class = 'name measurement'>Measurement 1 </td>
                 <td>  <input id = "a0" class = 'text_box' type="text" name="name" value ="160" /></td>
                 <td>  <input id = "b0" class = 'text_box' type="text" name="price" value ="20" />  </td>
-                <td class = 'name'>Fractal Dimension</td>
+                <td class = 'name'>Fractal <br> Dimension</td>
                 <td><a class="deleteRow"></a></td>
             </tr>
             <tr>
               <td class = 'name measurement'>Measurement 2 </td>
               <td>  <input id = "a1" class = 'text_box' type="text" name="name" value ="80"  />  </td>
               <td>  <input id = "b1" class = 'text_box' type="text" name="price" value ="47"  />    </td>
-              <td>  <input id = "fdbox0" disabled="disabled" class = 'text_box calc_text' type="text"  />    </td>
+              <td>  <input id = "fdbox0" disabled="disabled" class = 'calc_text fd_box' type="text"  />    </td>
             </tr>
         <tfoot>
             <tr>
@@ -91,7 +91,9 @@
     <div class="centered">
 
 
-      Example: The following are values from the coastline of britain obtained from rspatial.org. Enter these in the columns above to model great britain.
+      Example: The following are values from the coastline <br>
+      of britain obtained from rspatial.org. Enter these in the  <br>
+      columns above to model great britain.
 
 
     </div>
