@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "package": "asar pack Myapp-darwin-x64/Myapp.app/Contents/Resources/app Myapp-darwin-x64/Myapp.app/Contents/Resources/app.asar",
-    "build": "electron-packager . Myapp && cp Icon.icns Myapp-darwin-x64/Myapp.app/Contents/Resources/electron.icns "
+    "build": "electron-packager . Myapp --platform=darwin  && cp Icon.icns Myapp-darwin-x64/Myapp.app/Contents/Resources/electron.icns "
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
