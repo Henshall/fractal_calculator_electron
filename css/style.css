@@ -435,3 +435,16 @@ width: 69%;
 }
 
 }
+
+
+
+
+
+@media only screen and (min-width: 1000px) {
+
+body{
+  background-size: contain;
+}
+
+
+}
