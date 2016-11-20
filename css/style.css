@@ -1,4 +1,21 @@
 
+
+
+.guide_button{
+  position: relative;
+  left: 79vw;
+  top: -16vw;
+  width: 13vw;
+  height: 4.7vw;
+  font-size: 2vw;
+  max-width: 139px;
+  max-height: 48px;
+}
+
+
+
+
+
 .iteration_field{
   height: 30px;
   width: 100px;
@@ -53,13 +70,25 @@ width: 13vw;
 
 }
 
+
+.top_image{
+  background-image: url(../images/top_image.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40vw;
+  height: 18vw;
+  margin: 0 auto;
+  position: relative;
+  top: 8%;
+}
+
 .top_bar{
   color: white;
-  height: 6vw;
+  height: 19vw;
   width: 100%;
   top: 5px;
 
-/*background-color: black;*/
+background-color: black;
 
 
 
@@ -123,13 +152,13 @@ width: 50%;
 
 #addrow{
   text-align: center;
-      position: relative;
-      color: white;
-      width: 16.5vw;
-      font-size: 3vw;
-      text-align: center;
-      max-width: 115px;
-      font-size: 15px;
+  position: relative;
+  color: white;
+  width: 18.5vw;
+  font-size: 3vw;
+  text-align: center;
+  max-width: 102px;
+  font-size: 15px;
 }
 
 .first_box{
@@ -354,7 +383,6 @@ button.fbsubmit {
 
 .form_text{
   margin:auto;
-
   margin-bottom: 70px;
   width: 100%;
 
@@ -369,10 +397,10 @@ background-color: rgba(120, 134, 138, 0.64);
 }
 
 body{
-  background-image: url(../images/background3.jpg);
+  /*background-image: url(../images/background5.jpg);*/
       margin: 0;
-      color: white;
-      background-color: rgb(52, 52, 52);
+      color: black;
+      background-color: white;
       background-size: 1000px;
       background-repeat: repeat-y;
 }
