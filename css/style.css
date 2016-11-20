@@ -24,7 +24,7 @@
 
 
 .fd_box{
-  border-radius: 25px;
+  border-radius: 6px;
   font-size: 15px;
   padding: 5px 8px;
   cursor: pointer;
@@ -96,14 +96,14 @@ background-color: black;
 
 
 .text_box{
-  border-radius: 12px;
+  border-radius: 6px;
   font-size: 15px;
   padding: 5px 8px;
   cursor: pointer;
   color: black;
   background-color: white;
   font-family: Open sans, sans-serif;
-  border: 0.2px solid #fff;
+  border: .5px solid black;
   box-shadow: 2px 2px 5px #2f748e;
   transition-duration: 0.5s;
     /*// border-style: dotted;*/
@@ -167,8 +167,11 @@ width: 50%;
 
 .scale_box{
   background-color: white;
- // border-style: dashed;
- width: 12vw;
+  width: 12vw;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+
 }
 
 .button2{
@@ -193,24 +196,23 @@ width: 50%;
   width: 14%;
   text-align: center;
   /*border-style: dotted;*/
-  color: white;
+  color: black;
 }
 
 
 
 .text_box2{
-  border-radius: 1px;
+  border-radius: 5px;
   font-size: 15px;
   padding: 5px 8px;
   cursor: pointer;
   color: black;
-  background-color: white;
+  background-color: lightgrey;
   font-family: Open sans, sans-serif;
   border: 0.2px solid #fff;
   box-shadow: 2px 2px 5px #2f748e;
   transition-duration: 0.5s;
-    // border-style: dotted;
-   width: 10vw;
+  width: 10vw;
 }
 
 .britain{
@@ -314,7 +316,7 @@ input.submit {
     margin: 1em 0;
     background-color: #2f748e;
     color: white;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 
