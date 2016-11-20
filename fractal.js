@@ -242,4 +242,14 @@ $(document).ready(function () {
       $("#grandtotal").text(grandTotal.toFixed(2));
     }
 
+
+
+
+
+
+
+
+
+
+
 });

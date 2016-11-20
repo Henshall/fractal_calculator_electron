@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <div class="top_bar">
+      <div class="top_image">   </div>
+      <button type="button" name="button" class="guide_button"><a href="index.html">Calculator</a></button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="text_margin">
+
+
+    <h3>Guide:</h3>   <br>
+    This calculator can be used to calculate the perimeter or length of any natural object. The length of any object depends upon the scale at which you measure it. For example, the perimeter of great britain is 2500km when measured with a 250km ruler, yet when using a 50km ruler, its perimeter is 4225km.
+    <br><br>
+    This calculator calculates the fractal dimension for all entered data, and uses this to calculate a fractal dimension for any entered scale. Because it uses multiple fractal dimensions, you can model any object (fractal and non fractal), and find its perimeter at any scale.
+    <br><br>
+
+      <b>Step 1:</b> Measure your object using different unit lengths (ex. 1km and 2km lengths)
+      <br><br>
+      <b>Step 2:</b> Record the numbe of times each unit length fits into your objects (ex your pond, river, coastline, etc).
+      <br><br>
+      <b>Step 3:</b> Input values from step 1 and 2, choose a scale, and press calculate
+    </div>
+    <br><br><br>
+    <div class="centered">
+
+
+      Example: The following are values from the coastline <br>
+      of britain obtained from rspatial.org. Enter these in the  <br>
+      columns above to model great britain.
+
+
+    </div>
+    <br>
+    <br>
+
+    <div class="centered">
+
+
+      <table class ="example">
+        <tr>
+          <td>  Unit Length  </td>
+          <td>    # times fits into object  </td>
+        </tr>
+        <tr>
+          <td> 250  </td>
+          <td> 10   </td>
+        </tr>
+        <tr>
+          <td> 200  </td>
+          <td> 13   </td>
+        </tr>
+        <tr>
+          <td> 150  </td>
+          <td> 18   </td>
+        </tr>
+        <tr>
+          <td> 100  </td>
+          <td> 29   </td>
+        </tr>
+        <tr>
+          <td> 50  </td>
+          <td> 72   </td>
+        </tr>
+        <tr>
+          <td> 25  </td>
+          <td> 169   </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="centered">
+      <div class="britain">
+
+      </div>
+    </div>
+
+
+    </div>
+
+
+    <br>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script  language="JavaScript" type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script  language="JavaScript" type="text/javascript" src="modernizr-2.6.2.min.js"></script>
+    <script   language="JavaScript" type="text/javascript" src="fractal.js"></script>
+  </body>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
